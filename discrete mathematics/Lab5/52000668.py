@@ -154,6 +154,7 @@
 
 
 # ex4
+import itertools
 import math
 print("="*10, "4", "="*10)
 print("="*10, "4a", "="*10)
@@ -201,25 +202,7 @@ print('Conclusion : C = ~v')
 
 
 # ex5
-# a
-# P = p
-# S1 = q -> t
-# S2 = p -> t
-# S3 = r -> t
-# Conclusion: C = t
-
-# b
-# P = p
-# Q = q
-# S1 =
-# S2 = p -> (v ^ r)
-# S3 =
-# S4 = ~s -> ~v
-# Conclusion: C = ~v
-
 # function from lab2
-
-
 def lImplies(p, q):
     if p:
         return q
@@ -244,8 +227,65 @@ def lNot(p):
 
 def lEquivalent(p, q):
     return p == q
+
+
+def lLImplies(p, q):
+    return [lImplies(p[i], q[i]) for i in range(len(p))]
+
+
+def lLAnd(p, q):
+    return [lAnd(p[i], q[i]) for i in range(len(p))]
+
+
+def lLOr(p, q):
+    return [lOr(p[i], q[i]) for i in range(len(p))]
+
+
+def lLXor(p, q):
+    return [lXor(p[i], q[i]) for i in range(len(p))]
+
+
+def lLNot(p):
+    return [lNot(p[i]) for i in range(len(p))]
+
+
+def lLEquivalent(p, q):
+    return [lEquivalent(p[i], q[i]) for i in range(len(p))]
 # end
 
+
+# a
+# P = p
+# S1 = q -> t
+# S2 = p -> t
+# S3 = r -> t
+# Conclusion: C = t
+
+print("p\tq\tr\tt\tq->t\tp->t\tr->t\tC:t")
+for i in (list(itertools.product([False, True], repeat=4))):
+    p = i[0]
+    q = i[1]
+    r = i[2]
+    t = i[3]
+    print(p, '\t', q, '\t', r, '\t', t, '\t', lImplies(q, t), '\t', lImplies(p, t), '\t',
+          lImplies(r, t), '\t', t)
+
+# b
+# P = p
+# Q = q
+# S1 =
+# S2 = p -> (v ^ r)
+# S3 =
+# S4 = ~s -> ~v
+# Conclusion: C = ~v
+print("p\tq\tr\tt\tq->t\tp->t\tr->t\tC:t")
+for i in (list(itertools.product([False, True], repeat=4))):
+    p = i[0]
+    q = i[1]
+    r = i[2]
+    t = i[3]
+    print(p, '\t', q, '\t', r, '\t', t, '\t', lImplies(q, t), '\t', lImplies(p, t), '\t',
+          lImplies(r, t), '\t', t)
 
 # ex6
 A = [
