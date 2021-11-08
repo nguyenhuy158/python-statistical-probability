@@ -194,15 +194,18 @@ print('Conclusion : C ="An is late for school"')
 print('-'*20)
 print('P = p')
 print('Q = q')
-print('S1= ')
+print('S1= r -> ~q')
 print('S2= p -> (v ^ r)')
-print('S3= ')
+print('S3= r <-> s')
 print('S4= ~s -> ~v')
 print('Conclusion : C = ~v')
 
 
 # ex5
 # function from lab2
+print("="*10, "5", "="*10)
+
+
 def lImplies(p, q):
     if p:
         return q
@@ -260,6 +263,7 @@ def lLEquivalent(p, q):
 # S2 = p -> t
 # S3 = r -> t
 # Conclusion: C = t
+print("="*10, "5a", "="*10)
 
 print("p\tq\tr\tt\tq->t\tp->t\tr->t\tC:t")
 for i in (list(itertools.product([False, True], repeat=4))):
@@ -273,21 +277,26 @@ for i in (list(itertools.product([False, True], repeat=4))):
 # b
 # P = p
 # Q = q
-# S1 =
+# S1 = r -> ~q
 # S2 = p -> (v ^ r)
-# S3 =
+# S3 = r < -> s
 # S4 = ~s -> ~v
 # Conclusion: C = ~v
-print("p\tq\tr\tt\tq->t\tp->t\tr->t\tC:t")
-for i in (list(itertools.product([False, True], repeat=4))):
+print("="*10, "5b", "="*10)
+
+print("p\tq\tr\ts\tv\tp\tq\tr->~q\t(v ^ r)\tp -> (v ^ r)\tr < -> s\t~s -> ~v\tC:~v")
+for i in (list(itertools.product([False, True], repeat=5))):
     p = i[0]
     q = i[1]
     r = i[2]
-    t = i[3]
-    print(p, '\t', q, '\t', r, '\t', t, '\t', lImplies(q, t), '\t', lImplies(p, t), '\t',
-          lImplies(r, t), '\t', t)
+    s = i[3]
+    v = i[4]
+    print(p, '\t', q, '\t', r, '\t', s, '\t', v, '\t', p, '\t', q, '\t',
+          lImplies(r, lNot(q)), '\t', lAnd(v, r), '\t', lImplies(p, lAnd(v, r)), '\t', lEquivalent(r, s), '\t', lImplies(lNot(s), lNot(v)), '\t', lNot(v))
 
 # ex6
+print("="*10, "6", "="*10)
+
 A = [
     [2, 0, 5, 0, 3, 0],
     [3, 0, 0, 0, 0, 0],
