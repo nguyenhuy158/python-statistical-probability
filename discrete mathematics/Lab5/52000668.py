@@ -153,57 +153,71 @@
 # #  print("~P -> ~Q")  # inverse
 
 
-# # ex4
-# print("="*10, "4", "="*10)
-# print("="*10, "4a", "="*10)
-# print("p: Phong has Visa")
-# print("q: Phong can fly")
-# print("r: Phong can speak English")
-# print("t: Phong goes to America")
-# print('P ="Phong has Visa"')
-# print('S1="If Phong can fly, Phong will go to America"')
-# print('S2="If Phong has Visa, Phong will go to America"')
-# print('S3="If Phong can speak English, Phong will go to America"')
-# print('Conclusion : C ="Phong goes to America"')
+# ex4
+import math
+print("="*10, "4", "="*10)
+print("="*10, "4a", "="*10)
+print("p: Phong has Visa")
+print("q: Phong can fly")
+print("r: Phong can speak English")
+print("t: Phong goes to America")
+print('P ="Phong has Visa"')
+print('S1="If Phong can fly, Phong will go to America"')
+print('S2="If Phong has Visa, Phong will go to America"')
+print('S3="If Phong can speak English, Phong will go to America"')
+print('Conclusion : C ="Phong goes to America"')
 
-# print('-'*20)
-# print('P = p')
-# print('S1= q -> t')
-# print('S2= p -> t')
-# print('S3= r -> t')
-# print('Conclusion : C = t')
+print('-'*20)
+print('P = p')
+print('S1= q -> t')
+print('S2= p -> t')
+print('S3= r -> t')
+print('Conclusion : C = t')
 
-# print("="*10, "4b", "="*10)
-# print("p: An wake up late")
-# print("q: the traffic is flowing smooth")
-# print("~q: the traffic is heavy")
-# print("r: school day")
-# print("s: An have go to school")
-# print("v: An is late for school")
+print("="*10, "4b", "="*10)
+print("p: An wake up late")
+print("q: the traffic is flowing smooth")
+print("~q: the traffic is heavy")
+print("r: school day")
+print("s: An have go to school")
+print("v: An is late for school")
 
-# print('Given:')
-# print('P ="An wake up late"; Q ="The traffic is flowing smooth"')
-# print('S1="The traffic is always heavy on school day"')
-# print('S2="If An wake up late, he will be late for school on school day"')
-# print('S3="An only have to go to school on school day"')
-# print('S4="If An don’t have to go to school, An can’t be late for school"')
-# print('Conclusion : C ="An is late for school"')
+print('Given:')
+print('P ="An wake up late"; Q ="The traffic is flowing smooth"')
+print('S1="The traffic is always heavy on school day"')
+print('S2="If An wake up late, he will be late for school on school day"')
+print('S3="An only have to go to school on school day"')
+print('S4="If An don’t have to go to school, An can’t be late for school"')
+print('Conclusion : C ="An is late for school"')
 
-# print('-'*20)
-# print('P = p')
-# print('Q = q')
-# print('S1= ')
-# print('S2= p -> (v ^ r)')
-# print('S3= ')
-# print('S4= ~s -> ~v')
-# print('Conclusion : C = ~v')
+print('-'*20)
+print('P = p')
+print('Q = q')
+print('S1= ')
+print('S2= p -> (v ^ r)')
+print('S3= ')
+print('S4= ~s -> ~v')
+print('Conclusion : C = ~v')
 
 
-# # ex5
+# ex5
+# a
+# P = p
+# S1 = q -> t
+# S2 = p -> t
+# S3 = r -> t
+# Conclusion: C = t
 
+# b
+# P = p
+# Q = q
+# S1 =
+# S2 = p -> (v ^ r)
+# S3 =
+# S4 = ~s -> ~v
+# Conclusion: C = ~v
 
 # function from lab2
-import math
 
 
 def lImplies(p, q):
@@ -244,6 +258,10 @@ A = [
 ]
 row = len(A)
 col = len(A[0])
+row_a = 0
+col_a = 0
+row_b = 0
+col_b = 0
 
 
 def isOdd(a):
@@ -272,20 +290,124 @@ def isEqual(a, b):
 
 
 def isAbove(a, b):
-    pass
+    return row_a < row_b
 
 
 def isLeftOf(a, b):
-    pass
+    return col_a < col_b
+
+
+def update(ia, ja, ib, jb):
+    row_a = ia
+    col_a = ja
+    row_b = ib
+    col_b = jb
 
 
 def ex6a(A):
     for i in range(row):
         for j in range(col):
-            if (A[i][j])
+            if lAnd(lNot(isOdd(A[i][j])), isPrime(A[i][j])):
+                return True
+
+    return False
+
+
+def ex6b(A):
+    for i in range(row):
+        for j in range(col):
+            if not(lImplies(isOdd(A[i][j]), isSquare(A[i][j]))):
+                return False
+
+    return True
+
+
+def ex6c(A):
+    for i in range(row):
+        for j in range(col):
+            if not(lImplies(isOdd(A[i][j]), isGreater(A[i][j], 2))):
+                return False
+
+    return True
+
+
+def ex6d(A):
+    for i in range(row):
+        for j in range(col):
+            if lImplies(isPrime(A[i][j]), lNot(lOr((isGreater(A[i][j], 3)), (isEqual(A[i][j], 3))))):
+                return True
+
+    return False
+
+
+def ex6e(A):
+    for ia in range(row):
+        for ja in range(col):
+            all = True
+            for ib in range(row):
+                for jb in range(col):
+                    update(ia, ja, ib, jb)
+                    if not(isLeftOf(A[ia][ja], A[ib][jb])):
+                        all = False
+            if all:
+                return True
+
+    return False
+
+
+def ex6f(A):
+    for ia in range(row):
+        for ja in range(col):
+            all = True
+            for ib in range(row):
+                for jb in range(col):
+                    update(ia, ja, ib, jb)
+                    if not(lImplies(isGreater(A[ia][ja], A[ib][jb]), not(isAbove(A[ia][ja], A[ib][jb])))):
+                        all = False
+            if all:
+                return True
+
+    return False
+
+
+def ex6g(A):
+    for ia in range(row):
+        for ja in range(col):
+            for ib in range(row):
+                for jb in range(col):
+                    update(ia, ja, ib, jb)
+                    a = A[ia][ja]
+                    b = A[ib][jb]
+                    if lImplies(isPrime(a) and not(isOdd(a)) and isOdd(b), isAbove(a, b)):
+                        return True
+
+    return False
+
+
+def ex6h(A):
+    for ia in range(row):
+        for ja in range(col):
+            for ib in range(row):
+                for jb in range(col):
+                    update(ib, jb, ia, ja)
+                    a = A[ia][ja]
+                    b = A[ib][jb]
+                    if not(lImplies(isSquare(a) and not(isOdd(a)) and not(isOdd(b)) and not(isEqual(a, b)), isLeftOf(b, a))):
+                        return False
+
+    return True
 
 
 for i in range(row):
     for j in range(col):
         print(A[i][j], end="\t")
     print("")
+
+print("a", ex6a(A))
+print("b", ex6b(A))
+print("c", ex6c(A))
+print("d", ex6d(A))
+print("e", ex6e(A))
+print("f", ex6f(A))
+print("g", ex6g(A))
+print("h", ex6h(A))
