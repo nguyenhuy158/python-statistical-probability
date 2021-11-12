@@ -1,161 +1,161 @@
-# # ex1
-# print("="*10, "1", "="*10)
-# P = "You get good grade in the midterm exam"
-# Q = "You understand how to solve all the exercises in the book"
-# print("P ", P)
-# print("Q ", Q)
+# ex1
+import math
+import itertools
+print("="*10, "1", "="*10)
+P = "You get good grade in the midterm exam"
+Q = "You understand how to solve all the exercises in the book"
+print("P ", P)
+print("Q ", Q)
 
 
-# # 1a
-# # (a) You get good grade in the midterm exam if you understand how to
-# # solve all the exercises in the book, and if you will get good grade
-# # in the midterm exam means you understand how to solve all the
-# # exercises in the book, .
-# print("="*10, "1a", "="*10)
-# print("Q -> P ^ P -> Q")
-# print("Q <-> P")
+# 1a
+# (a) You get good grade in the midterm exam if you understand how to
+# solve all the exercises in the book, and if you will get good grade
+# in the midterm exam means you understand how to solve all the
+# exercises in the book, .
+print("="*10, "1a", "="*10)
+print("Q -> P ^ P -> Q")
+print("Q <-> P")
 
-# # 1b
-# # (b) You understand how to solve all the exercises in the book, but you
-# # did not get good grade in the midterm exam
-# print("="*10, "1b", "="*10)
-# print("Q ^ ~P (by Negation Q -> P)")
+# 1b
+# (b) You understand how to solve all the exercises in the book, but you
+# did not get good grade in the midterm exam
+print("="*10, "1b", "="*10)
+print("Q ^ ~P (by Negation Q -> P)")
 
-# # (c) By understand how to solve all the exercises in the book, you will
-# # get good grade in the midterm exam
-# print("="*10, "1c", "="*10)
-# print("Q -> P")
-
-
-# # ex2
-# print("="*10, "2", "="*10)
-# P = "You get good grade in the midterm exam"
-# Q = "You understand how to solve all the exercises in the book"
-# print("P ", P)
-# print("Q ", Q)
-
-# # 2a
-# # (a) You get good grade in the midterm exam if you understand how to
-# # solve all the exercises in the book, and if you will get good grade
-# # in the midterm exam means you understand how to solve all the
-# # exercises in the book, .
-# print("="*10, "2a", "="*10)
-# print("Q <-> P")
-# print(
-#     "you get good grade in the midterm exam if, and only if you understand how to solve all the exercises in the book"
-# )
-
-# # (b) You understand how to solve all the exercises in the book, but you
-# # did not get good grade in the midterm exam
-# print("="*10, "2b", "="*10)
-# print("Q ^ ~P")
-# print("Q: you understand how to solve all the exercises in the book")
-# print("~P: you did not get good grade in the midterm exam")
-# print(
-#     "if you understand how to solve all the exercises in the book then you get good grade in the midterm exam"
-# )
-# # OR
-# #  print(
-# #      "it is not the case that you understand how to solve all the exercises in the book then you get good grade in the midterm exam"
-# #  )
-
-# # (c) By understand how to solve all the exercises in the book, you will
-# # get good grade in the midterm exam
-# print("="*10, "2c", "="*10)
-# print("Q -> P")
-# print(
-#     "if you understand how to solve all the exercises in the book then you will get good grade in the midterm exam"
-# )
-
-# # ex3
-# print("="*10, "3", "="*10)
-# P = "You get good grade in the midterm exam"
-# Q = "You understand how to solve all the exercises in the book"
-# print("P   ", P)
-# print("Q   ", Q)
-# print("P:  You get good grade in the midterm exam")
-# print("~P: You did not get good grade in the midterm exam")
-# print("Q:  You understand how to solve all the exercises in the book")
-# print("~Q: You do not understand how to solve all the exercises in the book")
-
-# print("="*10, "3a", "="*10)
-# print(
-#     "You get good grade in the midterm exam if, and only if you understand how to solve all the exercises in the book"
-# )
-
-# print("negative")
-# print("~(Q <-> P)")
-# print("~(Q -> P ^ P -> Q)")
-# print("~(Q -> P ^ P -> Q)")
-# print("~(Q -> P) V ~(P -> Q)")
-# print("Q ^ ~P V P ^ ~Q")
-# print("You understand how to solve all the exercises in the book and",
-#       "you did not get good grade in the midterm exam or",
-#       "you get good grade in the midterm exam and",
-#       "you do not understand how to solve all the exercises in the book")
-
-# print("converse: none")
-# print("contrapositive: none")
-
-# # (b)
-# print("="*10, "3b", "="*10)
-# print(
-#     "it is not the case that you understand how to solve all the exercises in the book then you get good grade in the midterm exam"
-# )
-# print("Q ^ ~P")
-# print("negative")
-# print("~(Q ^ ~P)")
-# print("Q -> P")
-# print(
-#     "if you understand how to solve all the exercises in the book then you will get good grade in the midterm exam"
-# )
-# print("converse: none")
-# print("contrapositive: none")
-
-# # (c)
-# print("="*10, "3c", "="*10)
-# print(
-#     "if you understand how to solve all the exercises in the book then you will get good grade in the midterm exam"
-# )
-# print("Q -> P")
-# print("negative")
-# print("~(Q -> P)")
-# print("Q ^ ~P")
-# print(
-#     "You get good grade in the midterm exam and You do not understand how to solve all the exercises in the book"
-# )
-
-# print("Q -> P")
-# print("converse")
-# print("P -> Q)")  # converse
-# print(
-#     "if You get good grade in the midterm exam then You understand how to solve all the exercises in the book"
-# )
-
-# print("Q -> P")
-# print("contrapositive")
-# print("~P -> ~Q)")  # contrapositive
-# print(
-#     "if You did not get good grade in the midterm exam then You do not understand how to solve all the exercises in the book"
-# )
+# (c) By understand how to solve all the exercises in the book, you will
+# get good grade in the midterm exam
+print("="*10, "1c", "="*10)
+print("Q -> P")
 
 
-# print("Q -> P")
-# print("inverse")
-# print("~Q -> ~P)")  # INVERSE
-# print(
-#     "if You do not understand how to solve all the exercises in the book then You do not understand how to solve all the exercises in the book"
-# )
+# ex2
+print("="*10, "2", "="*10)
+P = "You get good grade in the midterm exam"
+Q = "You understand how to solve all the exercises in the book"
+print("P ", P)
+print("Q ", Q)
 
-# #  print("P -> Q")
-# #  print("~Q -> ~P")  # contrapositive
-# #  print("Q -> P")  # converse
-# #  print("~P -> ~Q")  # inverse
+# 2a
+# (a) You get good grade in the midterm exam if you understand how to
+# solve all the exercises in the book, and if you will get good grade
+# in the midterm exam means you understand how to solve all the
+# exercises in the book, .
+print("="*10, "2a", "="*10)
+print("Q <-> P")
+print(
+    "you get good grade in the midterm exam if, and only if you understand how to solve all the exercises in the book"
+)
+
+# (b) You understand how to solve all the exercises in the book, but you
+# did not get good grade in the midterm exam
+print("="*10, "2b", "="*10)
+print("Q ^ ~P")
+print("Q: you understand how to solve all the exercises in the book")
+print("~P: you did not get good grade in the midterm exam")
+print(
+    "if you understand how to solve all the exercises in the book then you get good grade in the midterm exam"
+)
+# OR
+#  print(
+#      "it is not the case that you understand how to solve all the exercises in the book then you get good grade in the midterm exam"
+#  )
+
+# (c) By understand how to solve all the exercises in the book, you will
+# get good grade in the midterm exam
+print("="*10, "2c", "="*10)
+print("Q -> P")
+print(
+    "if you understand how to solve all the exercises in the book then you will get good grade in the midterm exam"
+)
+
+# ex3
+print("="*10, "3", "="*10)
+P = "You get good grade in the midterm exam"
+Q = "You understand how to solve all the exercises in the book"
+print("P   ", P)
+print("Q   ", Q)
+print("P:  You get good grade in the midterm exam")
+print("~P: You did not get good grade in the midterm exam")
+print("Q:  You understand how to solve all the exercises in the book")
+print("~Q: You do not understand how to solve all the exercises in the book")
+
+print("="*10, "3a", "="*10)
+print(
+    "You get good grade in the midterm exam if, and only if you understand how to solve all the exercises in the book"
+)
+
+print("negative")
+print("~(Q <-> P)")
+print("~(Q -> P ^ P -> Q)")
+print("~(Q -> P ^ P -> Q)")
+print("~(Q -> P) V ~(P -> Q)")
+print("Q ^ ~P V P ^ ~Q")
+print("You understand how to solve all the exercises in the book and",
+      "you did not get good grade in the midterm exam or",
+      "you get good grade in the midterm exam and",
+      "you do not understand how to solve all the exercises in the book")
+
+print("converse: none")
+print("contrapositive: none")
+
+# (b)
+print("="*10, "3b", "="*10)
+print(
+    "it is not the case that you understand how to solve all the exercises in the book then you get good grade in the midterm exam"
+)
+print("Q ^ ~P")
+print("negative")
+print("~(Q ^ ~P)")
+print("Q -> P")
+print(
+    "if you understand how to solve all the exercises in the book then you will get good grade in the midterm exam"
+)
+print("converse: none")
+print("contrapositive: none")
+
+# (c)
+print("="*10, "3c", "="*10)
+print(
+    "if you understand how to solve all the exercises in the book then you will get good grade in the midterm exam"
+)
+print("Q -> P")
+print("negative")
+print("~(Q -> P)")
+print("Q ^ ~P")
+print(
+    "You get good grade in the midterm exam and You do not understand how to solve all the exercises in the book"
+)
+
+print("Q -> P")
+print("converse")
+print("P -> Q)")  # converse
+print(
+    "if You get good grade in the midterm exam then You understand how to solve all the exercises in the book"
+)
+
+print("Q -> P")
+print("contrapositive")
+print("~P -> ~Q)")  # contrapositive
+print(
+    "if You did not get good grade in the midterm exam then You do not understand how to solve all the exercises in the book"
+)
+
+
+print("Q -> P")
+print("inverse")
+print("~Q -> ~P)")  # INVERSE
+print(
+    "if You do not understand how to solve all the exercises in the book then You do not understand how to solve all the exercises in the book"
+)
+
+#  print("P -> Q")
+#  print("~Q -> ~P")  # contrapositive
+#  print("Q -> P")  # converse
+#  print("~P -> ~Q")  # inverse
 
 
 # ex4
-import itertools
-import math
 print("="*10, "4", "="*10)
 print("="*10, "4a", "="*10)
 print("p: Phong has Visa")
@@ -284,7 +284,7 @@ for i in (list(itertools.product([False, True], repeat=4))):
 # Conclusion: C = ~v
 print("="*10, "5b", "="*10)
 
-print("p\tq\tr\ts\tv\tp\tq\tr->~q\t(v ^ r)\tp -> (v ^ r)\tr < -> s\t~s -> ~v\tC:~v")
+print("p\tq\tr\ts\tv\tp\tq\tr->~q\t(v ^ r)\t\tp -> (v ^ r)\t\tr < -> s\t~s -> ~v\t\tC:~v")
 for i in (list(itertools.product([False, True], repeat=5))):
     p = i[0]
     q = i[1]
@@ -292,7 +292,7 @@ for i in (list(itertools.product([False, True], repeat=5))):
     s = i[3]
     v = i[4]
     print(p, '\t', q, '\t', r, '\t', s, '\t', v, '\t', p, '\t', q, '\t',
-          lImplies(r, lNot(q)), '\t', lAnd(v, r), '\t', lImplies(p, lAnd(v, r)), '\t', lEquivalent(r, s), '\t', lImplies(lNot(s), lNot(v)), '\t', lNot(v))
+          lImplies(r, lNot(q)), '\t', lAnd(v, r), '\t\t', lImplies(p, lAnd(v, r)), '\t\t\t', lEquivalent(r, s), '\t\t', lImplies(lNot(s), lNot(v)), '\t\t\t', lNot(v))
 
 # ex6
 print("="*10, "6", "="*10)
