@@ -136,7 +136,7 @@ Writen_By = writen_by()
 # ex12
 questions = [
     """Han Christian Andersen is famous for fairy tales such as: "The Emperor's New Clothes", "The Little Mermaid", "The Little Match Girl", "The Snow Queen". Create a set in Python named Andersen and put his fairy tales' names as elements.""",
-    """Shakespeare is mostly famous for his tragedies such as: "Romeo and Juliet", "Hamlet", "King Lear", "Macbeth". Meanwhile, he also wrote comedies such as:"A Midsummer Night's Dream"and "A Comedy of Errors". Create a set in Python named Shakespeare and put his plays' names as elements.""",
+    """Shakespeare is mostly famous for his tragedies such as: "Romeo and Juliet", "Hamlet", "King Lear", "Macbeth". Meanwhile, he also wrote comedies such as: "A Midsummer Night's Dream" and "A Comedy of Errors". Create a set in Python named Shakespeare and put his plays names as elements.""",
     """Given the tragedies such as: "Medea", "Octavia", "Oedipus", "Ur-Hamlet". Comedies such as: "The Three Musketeer", "The Clouds". Meanwhile there are some stories that is hard to put in either comedies or tragedies such as: "Don Quixote", "Rapunzel", "Cinderella". Create 3 sets named Tragedy, Comedy and Uncategory then put the above works', included Andersen and Shakespeare's works, names in the right categories.""",
     """Create a set named Shakespeare_Tragedy by taking the difference of 2 related sets""",
     """Create a set named Andersen_Comedy by taking the intersection of 2 related sets""",
@@ -195,7 +195,24 @@ def timeEachWord():
     return result
 
 
+def timeEachWordAll():
+    result = {}
+    for question in questions:
+        for word in (
+            question.replace('"', "").replace("' ", "").replace(".", "").split(" ")
+        ):
+            if result.get(word) == None:
+                result[word] = 1
+            else:
+                result[word] += 1
+
+    result = [r for r in result.items()]
+    result.sort(reverse=True, key=sortByTime)
+    return result
+
+
 Time_Each_Word = timeEachWord()
+Time_Each_Word_ALL = timeEachWordAll()
 # for t in Time_Each_Word.items():
 #     print(t[0])
 #     print(t[1])
@@ -276,4 +293,8 @@ if __name__ == "__main__":
         print("Time_Each_Word in", e[0], ":")
         for pair in e[1]:
             print("\t", pair)
+    print("Time_Each_Word:")
+    for e in Time_Each_Word_ALL:
+        print("\t", e)
+
     pass
