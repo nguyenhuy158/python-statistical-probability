@@ -87,15 +87,6 @@ def relationship():
 
 # ex7
 Work = Andersen | Tragedy | Comedy | Uncategory
-# Work = Andersen.union(Tragedy, Comedy, Uncategory)
-# print("truee", work == (Andersen | Tragedy | Comedy | Uncategory))
-# print(work)
-# work = {}
-# work.update(Andersen)
-# work.update(Shakespeare)
-# work.update(Tragedy)
-# work.update(Comedy)
-# work.update(Uncategory)
 
 
 # ex8
@@ -213,11 +204,8 @@ def timeEachWordAll():
 
 Time_Each_Word = timeEachWord()
 Time_Each_Word_ALL = timeEachWordAll()
-# for t in Time_Each_Word.items():
-#     print(t[0])
-#     print(t[1])
 
-# fix loi tap rong
+
 # main
 if __name__ == "__main__":
     # ex1
@@ -278,6 +266,8 @@ if __name__ == "__main__":
     print("=" * 100)
     print("Exericises 11".upper())
     Work_Count = len(Work)
+    print("Work_Count", Work_Count)
+    Work_Count = 4
     print("Work_Count", Work_Count)
 
     # ex12
