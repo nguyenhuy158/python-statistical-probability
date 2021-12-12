@@ -9,7 +9,7 @@ def draw(A1, vertexs):
     nx.draw_networkx(
         G1, pos=pos, with_labels=True, labels={a: b for a, b in enumerate(vertexs)}
     )
-    edge_labels = nx.draw_networkx_edge_labels(G1, font_size=6, pos=pos, label_pos=0.5)
+    edge_labels = nx.draw_networkx_edge_labels(G1, font_size=8, pos=pos, label_pos=0.5)
     plt.axis("equal")
     plt.show()
 
@@ -19,22 +19,12 @@ def mPlus(A, B):
         raise Exception("len A not equal len B")
 
     return [[A[i][j] + B[i][j] for j in range(len(A[0]))] for i in range(len(A))]
-    # for i in range(len(A)):
-    #     for j in range(len(A[0])):
-    #         C[i][j] = A[i][j] + B[i][j]
-
-    # return C
 
 
 def mMinus(A, B):
     if len(A) != len(B) or len(A[0]) != len(B[0]):
         raise Exception("len A not equal len B")
     return [[A[j][i] - B[i][j] for j in range(len(A[0]))] for i in range(len(A))]
-    # for i in range(len(A)):
-    #     for j in range(len(A[0])):
-    #         C[i][j] = A[i][j] + B[i][j]
-
-    # return C
 
 
 def mMultiply(A, B):
@@ -54,40 +44,31 @@ def mTranspose(A):
 
 
 def toLoE(A):
-    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    mapAlphabet = {i: alphabet[i] for i in range(len(alphabet))}
-    edges = []
-    for i in range(len(A)):
-        for j in range(i + 1, len(A[0])):
+    n = len(A)
+    edgeList = [[] for i in range(n)]
+    for i in range(n):
+        listTemp = []
+        for j in range(n):
             if A[i][j] != 0:
-                edges.append((mapAlphabet[i], mapAlphabet[j], A[i][j]))
+                listTemp.append(j)
+        edgeList[i] = listTemp
+    return edgeList
 
-    return edges
 
-
-if __name__ == "__main__":
-    # A1 = np.array([[0, 3, 5, 2], [0, 0, 2, 0], [0, 0, 0, 3], [0, 0, 0, 0]])
-    # A1 = np.array([[0, 1, 1], [1, 0, 0], [1, 0, 0]])
-    # draw(A1)
-
+def main():
+    # 1a
     A = [[1, 2], [2, 3]]
-    B = [[1, 2], [2, 3]]
+    B = [[3, 4], [5, 6]]
     print(mPlus(A, B))
-    # draw(np.array(mPlus(A, B)), "ab")
+    draw(np.array(mPlus(A, B)), "ab")
 
+    # 1b
     A = [[2, 2], [2, 3]]
     B = [[1, 1], [3, 3]]
-    # print(mMinus(A, B))
-    # draw(np.array(mMinus(A, B)), "ab")
+    print(mMinus(A, B))
+    draw(np.array(mMinus(A, B)), "ab")
 
-    A = [[2, 2], [2, 3]]
-    B = [[1, 1, 1], [3, 3, 3]]
-    # print(mMultiply(A, B))
-    # draw(np.array(mMinus(A, B)), "ab")
-
-    A = [[1, 2], [4, 3]]
-    print(mTranspose(A))
-
+    # 1c
     A = [[1, 2], [3, 4]]
     B = [[2, 0], [1, 2]]
     print(mMultiply(A, B))
@@ -96,6 +77,13 @@ if __name__ == "__main__":
     B = [[1, 4, 6], [2, 7, 5], [9, 0, 11], [3, 1, 0]]
     print(mMultiply(A, B))
 
+    # 1d
+    A = [[1, 2], [4, 3]]
+    print(mTranspose(A))
+    draw(np.array(mTranspose(A)), "ab")
+
+    ##################################################
+    # 2
     A = [
         [0, 0, 3, 0, 1],
         [0, 0, 5, 3, 0],
@@ -103,7 +91,7 @@ if __name__ == "__main__":
         [0, 3, 1, 0, 2],
         [1, 0, 0, 2, 0],
     ]
-    # draw(np.array(A), "abcde")
+    draw(np.array(A), "abcde")
 
     A = [
         [0, 0, 0, 0, 1, 1],
@@ -113,8 +101,19 @@ if __name__ == "__main__":
         [1, 0, 0, 2, 0, 6],
         [1, 0, 0, 3, 6, 0],
     ]
-    # draw(np.array(A), "abcdef")
+    draw(np.array(A), "abcdef")
 
+    def getVertexs(lines):
+        vertexs = set()
+        for source, dest, weight in lines:
+            # print(source, dest, weight)
+            vertexs.add(source)
+            vertexs.add(dest)
+
+        return [v for v in vertexs]
+
+    ##################################################
+    # 3
     lines = [
         ("A", "C", 5),
         ("A", "D", 3),
@@ -126,13 +125,16 @@ if __name__ == "__main__":
         ("D", "F", 3),
         ("E", "F", 4),
     ]
-    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    vertexs = getVertexs(lines)
+    vertexs.sort()
+    alphabet = "".join(vertexs)
+    # print(alphabet)
     mapAlphabet = {alphabet[i]: i for i in range(len(alphabet))}
     n = len(alphabet)
     A = [[0 for j in range(n)] for i in range(n)]
     for line in lines:
-        A[mapAlphabet[line[0]]][mapAlphabet[line[1]]] = 5
-    # draw(np.array(A), "abcdef")
+        A[mapAlphabet[line[0]]][mapAlphabet[line[1]]] = line[2]
+    draw(np.array(A), "abcdef")
 
     lines = [
         ("A", "C", 2),
@@ -146,8 +148,110 @@ if __name__ == "__main__":
         ("D", "F", 5),
         ("E", "F", 3),
     ]
+    vertexs = getVertexs(lines)
+    vertexs.sort()
+    alphabet = "".join(vertexs)
+    # print(alphabet)
+    mapAlphabet = {alphabet[i]: i for i in range(len(alphabet))}
+    n = len(alphabet)
+    A = [[0 for j in range(n)] for i in range(n)]
     for line in lines:
-        A[mapAlphabet[line[0]]][mapAlphabet[line[1]]] = 5
-    # draw(np.array(A), "abcdef")
+        A[mapAlphabet[line[0]]][mapAlphabet[line[1]]] = line[2]
+    draw(np.array(A), "abcdef")
 
-    print(toLoE(A))
+    ##################################################
+    # 4
+    A = [
+        [0, 0, 0, 0, 1, 1],
+        [0, 0, 5, 3, 0, 0],
+        [0, 5, 0, 1, 0, 0],
+        [0, 3, 1, 0, 2, 3],
+        [1, 0, 0, 2, 0, 6],
+        [1, 0, 0, 3, 6, 0],
+    ]
+
+    edgeList = toLoE(A)
+    for i in range(len(edgeList)):
+        print(i, "->", edgeList[i])
+
+    # 5
+    lists = [
+        "Monkeys",
+        "Apes",
+        "Gorillas",
+        "Primates",
+        "Mice",
+        "Squirrels",
+        "Beavers",
+        "Rodents",
+        "Crocodiles",
+        "Komodo dragons",
+        "Lizards",
+        "Reptiles",
+        "Coconut trees",
+        "Grasses",
+        "Oaks",
+        "Plants",
+        "Mushrooms",
+        "Molds",
+        "Yeasts",
+        "Fungi",
+        "Mammals",
+        "Animals",
+        "Multicellular organisms",
+        "Unicellular organisms",
+    ]
+    G = nx.Graph()
+
+    # G = nx.
+
+    G.add_nodes_from(lists)
+    G.add_edges_from(
+        [("Monkeys", "Primates"), ("Apes", "Primates"), ("Gorillas", "Primates")]
+    )
+    G.add_edges_from(
+        [("Mice", "Rodents"), ("Squirrels", "Rodents"), ("Beavers", "Rodents")]
+    )
+    G.add_edges_from(
+        [
+            ("Crocodiles", "Reptiles"),
+            ("Komodo dragons", "Reptiles"),
+            ("Lizards", "Reptiles"),
+        ]
+    )
+    G.add_edges_from(
+        [("Coconut trees", "Plants"), ("Grasses", "Plants"), ("Oaks", "Plants")]
+    )
+    G.add_edges_from([("Mushrooms", "Fungi"), ("Molds", "Fungi"), ("Yeasts", "Fungi")])
+    G.add_edges_from([("Primates", "Mammals"), ("Rodents", "Mammals")])
+    G.add_edges_from(
+        [("Mammals", "Animals"), ("Rodents", "Animals"), ("Reptiles", "Animals")]
+    )
+    G.add_edges_from(
+        [
+            ("Animals", "Multicellular organisms"),
+            ("Plants", "Multicellular organisms"),
+            ("Mushrooms", "Multicellular organisms"),
+            ("Molds", "Multicellular organisms"),
+        ]
+    )
+    G.add_edges_from(
+        [
+            ("Yeasts", "Unicellular organisms"),
+            ("Rodents", "Animals"),
+            ("Reptiles", "Animals"),
+        ]
+    )
+
+    # print(G.nodes())  # returns a list
+    # print(G.edges())  # returns a list
+
+    # so^>v<dph8
+    # nx.draw(G, node_size=10, linewidths=10)
+    # nx.draw(G, with_labels=True)
+
+    nx.draw(G, with_labels=True, node_size=10, linewidths=10)
+    plt.show()
+
+
+main()
