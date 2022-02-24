@@ -28,7 +28,7 @@ print(urn)
 U6 = list(itertools.combinations(urn, 6))
 
 # a
-print(len(U6))
+# print(len(U6))
 # b
 # for i in U6:
 #     print(i)
@@ -60,45 +60,104 @@ k = 3
 U3 = list(itertools.combinations(urn_2, k))
 len_U3 = len(U3)
 # b
-# method 1
-# hoanvi_color =  ['WBR', 'WRB', 'BWR', 'BRW', 'RBW', 'RWB']
-# for i in U3:
-#   if i[0][0] + i[1][0] + i[2][0] in hoanvi_color:
-#     print(i)
-# method 2
 colors = 3
+print("cac truong hop co 3 mau rieng biet")
 for i in U3:
     currentColor = set()
     for j in i:
         currentColor.add(j[0])
     if len(currentColor) == 3:
-        print(i)
+        print(*i)
 # c
-count = 0
+print("cac truong hop co ba thu 1 mau trang(W) va qua thu 2 mau do(R)")
 for i in U3:
     if i[0][0] == 'W' and i[1][0] == 'R':
-        # print(i)
-        count += 1
-print(count)
+        print(*i)
 
-# # bai3
-# # (M)athematics (P)hysics (C)hemistry (L)anguage
-# shelf_3 = cross('M', '1234') | cross(
-#     'P', '123') | cross('C', '12') | cross('L', '1')
+# === bai3
+# (M)athematics (P)hysics (C)hemistry (L)anguage
+print("== bai 3 == \t" * 5)
 
-# all_cases = list(itertools.permutations(shelf_3))
+shelf_3 = cross('M', '1234') | cross(
+    'P', '123') | cross('C', '12') | cross('L', '1')
+
+all_cases = list(itertools.permutations(shelf_3))
 # print(len(all_cases))
 
-# correct = [''.join(a) for a in list(
-#     itertools.permutations(('MMMM', 'PPP', 'CC', 'L')))]
-# print(correct)
-# count = 0
-# for i in all_cases:
-#     s = ''.join([j[0] for j in i])
+correct = [''.join(a) for a in list(
+    itertools.permutations(('MMMM', 'PPP', 'CC', 'L')))]
+save = []
+print(correct)
+count = 0
+for i in all_cases:
+    s = ''.join([j[0] for j in i])
 
-#     if s in correct:
-#         print(s)
-#         # print(i)
-#         count += 1
+    if s in correct:
+        save.append(i)
+        count += 1
 
-# print("count: ", count)
+print("so truong hop thoa man de cau 3 la: ", count)
+for s in save:
+    print(s)
+
+# === bai 4
+print("== bai 4 == \t" * 5)
+# (F)emale (M)ale
+# people_4 = cross('F', '123456789') | cross('M', '123456')
+
+choose_2_F = list(itertools.combinations(cross('F', '123456789'), 2))
+choose_3_M = list(itertools.combinations(cross('M', '123456'), 3))
+
+print("so luong truong hop thoa man la:", len(cross(choose_3_M, choose_2_F)))
+print("cu the la: ")
+for i in cross(choose_3_M, choose_2_F):
+    print(i)
+
+# === bai 5
+# A234567890JQK
+# 10 == 0 (con 10 quy ra la so 0)
+print("== bai 5 == \t" * 5)
+desk_order = {
+    'A': 1,
+    '2': 2,
+    '3': 3,
+    '4': 4,
+    '5': 5,
+    '6': 6,
+    '7': 7,
+    '8': 8,
+    '9': 9,
+    '0': 10,
+    'J': 11,
+    'Q': 12,
+    'K': 13,
+    }
+
+desk_5 = cross('♠', 'A234567890JQK') | cross('♣', 'A234567890JQK') | cross('♦', 'A234567890JQK') | cross('♥', 'A234567890JQK')
+# print(desk_5)
+# print(len(desk_5))
+def my_desk(e):
+    return desk_order[e[-1]]
+def three_of_a_kind(temp):
+    if (desk_order[temp[0][-1]] + desk_order[temp[1][-1]] + desk_order[temp[2][-1]]) / 3 == desk_order[temp[0][-1]] and desk_order[temp[3][-1]] != desk_order[temp[4][-1]] and  desk_order[temp[3][-1]] != desk_order[temp[0][-1]]:
+        return True
+    if (desk_order[temp[1][-1]] + desk_order[temp[2][-1]] + desk_order[temp[3][-1]]) / 3 == desk_order[temp[1][-1]] and desk_order[temp[4][-1]] != desk_order[temp[0][-1]] and  desk_order[temp[4][-1]] != desk_order[temp[1][-1]]:
+        return True
+    if (desk_order[temp[2][-1]] + desk_order[temp[3][-1]] + desk_order[temp[4][-1]]) / 3 == desk_order[temp[2][-1]] and desk_order[temp[0][-1]] != desk_order[temp[1][-1]] and  desk_order[temp[1][-1]] != desk_order[temp[2][-1]]:
+        return True
+    
+    return False
+choose_5_card = list(itertools.combinations(desk_5, 5))
+count = 0
+print("liet ke bo three of a kind")
+for i in choose_5_card:
+
+    temp = list(i)
+    temp.sort(key=my_desk)
+    if three_of_a_kind(temp):
+        print(temp)
+    count += 1
+    # if count == 100:
+    #     break
+
+print("so truong hop cua three of a kind la: ", count)
