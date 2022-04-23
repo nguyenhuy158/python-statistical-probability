@@ -1,0 +1,17 @@
+làm bài luận - 2 tuần để làm
+
+bài 1:
+permutation:  (hiểu nghĩa chọn k hoàn lại)
+chỉnh hợp (hoán vị)
+giống nhau : chọn k phần tử từ tổng n phần tử. chọn ra luôn k có bỏ lại.
+
+có thứ tự
+
+bài  2
+combination: tổ hợp
+không có hoán vị
+không quan tâm hoán vị.
+
+bài 3 urn problems:
+urn: bình kín
+
